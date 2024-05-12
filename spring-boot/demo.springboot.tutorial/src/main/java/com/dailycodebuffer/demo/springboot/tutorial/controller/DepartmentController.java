@@ -1,6 +1,7 @@
 package com.dailycodebuffer.demo.springboot.tutorial.controller;
 
 import com.dailycodebuffer.demo.springboot.tutorial.entity.Department;
+import com.dailycodebuffer.demo.springboot.tutorial.errorHandler.DepartmentErrorHandler;
 import com.dailycodebuffer.demo.springboot.tutorial.service.DepartmentService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class DepartmentController {
     }
 
     @GetMapping(value = "/fetchDepartmentsListById/{id}")
-    public Department fetchDepartmentsListById(@PathVariable("id") Long deptId) {
+    public Department fetchDepartmentsListById(@PathVariable("id") Long deptId) throws DepartmentErrorHandler {
         return departmentService.fetchDepartmentsListById(deptId);
     }
 

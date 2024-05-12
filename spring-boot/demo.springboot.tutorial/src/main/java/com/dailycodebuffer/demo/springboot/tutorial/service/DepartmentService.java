@@ -1,6 +1,7 @@
 package com.dailycodebuffer.demo.springboot.tutorial.service;
 
 import com.dailycodebuffer.demo.springboot.tutorial.entity.Department;
+import com.dailycodebuffer.demo.springboot.tutorial.errorHandler.DepartmentErrorHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -11,7 +12,7 @@ public interface DepartmentService {
     public  Department saveDepartment(Department department);
     public List<Department> fetchDepartmentsList();
 
-    public  Department fetchDepartmentsListById(long deptId);
+    public  Department fetchDepartmentsListById(long deptId) throws DepartmentErrorHandler;
 
     public String deleteDepartmentsListById(Long deptId);
     public String updateDepartmentsListById(Long deptId,Department department);

@@ -1,6 +1,7 @@
 package com.dailycodebuffer.demo.springboot.tutorial.service;
 
 import com.dailycodebuffer.demo.springboot.tutorial.entity.Department;
+import com.dailycodebuffer.demo.springboot.tutorial.errorHandler.DepartmentErrorHandler;
 import com.dailycodebuffer.demo.springboot.tutorial.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,8 +28,14 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department fetchDepartmentsListById(long deptId) {
-        return departmentRepository.findById(deptId).get();
+    public Department fetchDepartmentsListById(long deptId) throws DepartmentErrorHandler {
+        Optional <Department> departments=
+         departmentRepository.findById(deptId);
+        if (!departments.isPresent())
+        {
+            throw new DepartmentErrorHandler("department id is not avialable ");
+        }
+        return departments.get();
     }
 
     @Override
